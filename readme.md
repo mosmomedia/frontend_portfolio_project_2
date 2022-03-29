@@ -1,6 +1,6 @@
 # MERN with Firebase Auth Pracitce
 
-## 1. Create projects in Firebase & mongoDB sites.
+## 1. Setting up the Firebase & mongoDB Atlas.
 
 # client firebase config
 
@@ -34,7 +34,7 @@ admin.initializeApp({
 
 <!-- mongodb+srv://mosmo:<password>@cluster0.qgz0v.mongodb.net/myFirstDatabase?retryWrites=true&w=majority -->
 
-## 2. Server environment
+## 2. Backend Server Environment
 
 npm init
 npm install express nodemon cors dotenv concurrently mongoose firebase-admin
@@ -62,3 +62,10 @@ index.js
 firebase.js
 
 <!-- require('dotenv').config(); -->
+
+# setting up Routes
+
+/routes
+rootRoutes.js
+
+<!-- app.use('/api/', require('./routes/rootRoutes')); -->
