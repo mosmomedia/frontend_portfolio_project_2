@@ -20,6 +20,8 @@ const app = initializeApp(firebaseConfig); -->
 
 # server firebase admin config
 
+firebase serviceAccount.json
+
 <!-- var admin = require("firebase-admin");
 
 var serviceAccount = require("path/to/serviceAccountKey.json");
@@ -57,5 +59,6 @@ sever.js
 /config
 db.js
 index.js
+firebase.js
 
 <!-- require('dotenv').config(); -->
