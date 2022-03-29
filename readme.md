@@ -40,13 +40,16 @@ npm init
 npm install express nodemon cors dotenv concurrently mongoose firebase-admin
 
 <!-- package.json -->
-<!-- "scripts": {
-		"start": "node backend/server.mjs",
-		"server": "nodemon backend/server.mjs",
-		"client": "npm start --prefix frontend",
-		"dev": "concurrently \"npm run server\" \"npm run client\"",
-		"test": "echo \"Error: no test specified\" && exit 1"
-	}, -->
+
+"scripts": {
+"start": "node backend/server.mjs",
+"server": "nodemon backend/server.mjs",
+"client": "npm start --prefix frontend",
+"dev": "concurrently \"npm run server\" \"npm run client\"",
+"test": "echo \"Error: no test specified\" && exit 1"
+}
+
+<!--  -->
 
 .env
 
@@ -69,3 +72,29 @@ firebase.js
 rootRoutes.js
 
 <!-- app.use('/api/', require('./routes/rootRoutes')); -->
+
+## 3. Frontend Create-react-app
+
+/frontend
+
+<!-- package.json -->
+
+    "proxy": "http://localhost:8000",
+
+<!--  -->
+
+<!-- backend package.json -->
+
+"client": "npm start --prefix frontend",
+"dev": "concurrently \"npm run server\" \"npm run client\""
+
+<!--  -->
+
+npm i axios firebase react-router-dom react-icons react-modal react-toastify framer-motion
+
+<!-- issue -->
+
+react v18 realsed..
+npm i react-modal --legacy-peer-deps
+
+<!--  -->
