@@ -75,6 +75,8 @@ rootRoutes.js
 
 ## 3. Frontend Create-react-app
 
+# initiate React app
+
 /frontend
 
 <!-- package.json -->
@@ -98,3 +100,7 @@ react v18 realsed..
 npm i react-modal --legacy-peer-deps
 
 <!--  -->
+
+# styling with tailwind
+
+<!-- https://tailwindcss.com/docs/guides/create-react-app -->
