@@ -11,6 +11,34 @@ body {
 	line-height: 1.6;
 }
 
+a {
+	text-decoration: none;
+	display: block;
+	color: #000000;
+}
+
+@layer base {
+	.bred {
+		border: 1px solid rgba(255, 0, 0, 0.4);
+	}
+}
+
+@layer components {
+	.input {
+		box-shadow: rgba(0, 0, 0, 0.11);
+		border: none;
+		background: #fff;
+		color: #000;
+		border-radius: 0.25rem;
+		height: 3rem;
+		width: 100%;
+		outline: none;
+		padding: 0 3rem;
+		font-size: 1rem;
+		margin: 1rem 0;
+	}
+}
+
 /*  {
 	box-sizing: border-box;
 	margin: 0;

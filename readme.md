@@ -104,3 +104,17 @@ npm i react-modal --legacy-peer-deps
 # styling with tailwind
 
 <!-- https://tailwindcss.com/docs/guides/create-react-app -->
+
+# Frontend setting up Firebase
+
+/src/config
+firebase.js
+
+# pages & components
+
+/pages
+/components
+
+# FE&BE sign-up Page
+
+setting up Auth pages without OAuth
