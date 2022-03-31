@@ -1,20 +1,106 @@
 const Feedback = require('../models/feedbackModel');
+const firebaseAdmin = require('../config/firebase');
 
 const asyncHandler = require('express-async-handler');
 
 // get all feedback
-const getAllFeedback = (req, res) => {
-	res.status(200).send(req.user);
-};
+const getAllFeedback = asyncHandler(async (req, res) => {
+	const allFeedback = await Feedback.find({}).sort({ updatedAt: -1 });
+	res.status(200).json(allFeedback);
+});
 
 // create a feedback
 const createFeedback = asyncHandler(async (req, res) => {
-	console.log(req.user);
-	console.log(req);
-	res.status(200).send(req.body);
+	const { rating, text } = req.body;
+	const { name, userObjectId } = req.user;
+
+	const feedback = await Feedback.create({
+		rating,
+		text,
+		userName: name,
+		userRef: userObjectId,
+	});
+
+	res.status(200).json(feedback);
+});
+
+// update a feedback
+const updateFeedback = asyncHandler(async (req, res) => {
+	const { id } = req.params;
+
+	if (!id) {
+		res.status(400);
+		throw new Error('ID not found ');
+	}
+
+	const docSnap = await firebaseAdmin.db
+		.collection('users')
+		.doc(req.user.uid)
+		.get();
+
+	if (!docSnap.exists) {
+		res.status(401);
+		throw new Error('User not found');
+	}
+
+	const feedback = await Feedback.findById(id);
+
+	if (!feedback) {
+		res.status(404);
+		throw new Error('feedback not found');
+	}
+
+	if (feedback.userRef.toString() !== req.user.userObjectId) {
+		res.status(401);
+		throw new Error('Not Authorized');
+	}
+
+	const updatedFeedback = await Feedback.findByIdAndUpdate(id, req.body, {
+		new: true,
+	});
+
+	res.status(200).json(updatedFeedback);
+});
+
+// delete a feedback
+const deleteFeedback = asyncHandler(async (req, res) => {
+	const { id } = req.params;
+
+	if (!id) {
+		res.status(400);
+		throw new Error('ID not found ');
+	}
+
+	const docSnap = await firebaseAdmin.db
+		.collection('users')
+		.doc(req.user.uid)
+		.get();
+
+	if (!docSnap.exists) {
+		res.status(401);
+		throw new Error('User not found');
+	}
+
+	const feedback = await Feedback.findById(id);
+
+	if (!feedback) {
+		res.status(404);
+		throw new Error('feedback not found');
+	}
+
+	if (feedback.userRef.toString() !== req.user.userObjectId) {
+		res.status(401);
+		throw new Error('Not Authorized');
+	}
+
+	await feedback.remove();
+
+	res.status(200).json({ success: true });
 });
 
 module.exports = {
 	getAllFeedback,
 	createFeedback,
+	updateFeedback,
+	deleteFeedback,
 };

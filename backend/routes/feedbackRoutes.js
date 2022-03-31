@@ -4,14 +4,17 @@ const router = express.Router();
 const {
 	getAllFeedback,
 	createFeedback,
+	updateFeedback,
+	deleteFeedback,
 } = require('../controllers/feedbackController');
 
 const authMiddleware = require('../middleware/authMiddleware');
 
 // check routing
+router.route('/').get(getAllFeedback).post(authMiddleware, createFeedback);
 router
-	.route('/')
-	.get(authMiddleware, getAllFeedback)
-	.post(authMiddleware, createFeedback);
+	.route('/:id')
+	.put(authMiddleware, updateFeedback)
+	.delete(authMiddleware, deleteFeedback);
 
 module.exports = router;

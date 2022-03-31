@@ -1,5 +1,4 @@
 const firebaseAdmin = require('../config/firebase');
-
 const asyncHandler = require('express-async-handler');
 
 const authmiddleware = asyncHandler(async (req, res, next) => {

@@ -153,3 +153,10 @@ app.use(express.urlencoded({ extended: false }));
 <!--  -->
 
 # authMiddleware API
+
+#
+
+    getAllFeedback,
+    createFeedback,
+    updateFeedback,
+    deleteFeedback,

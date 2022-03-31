@@ -14,6 +14,8 @@ app.use(express.urlencoded({ extended: false }));
 // Routes
 app.use('/api/feedback', require('./routes/feedbackRoutes'));
 
+// todo errorMiddleware
+
 // local server
 app.listen(config.PORT, () =>
 	console.log(`Server started on port ${config.PORT}`)
