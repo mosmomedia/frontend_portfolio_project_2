@@ -73,7 +73,7 @@ rootRoutes.js
 
 <!-- app.use('/api/', require('./routes/rootRoutes')); -->
 
-## 3. Frontend Create-react-app
+## 3. Frontend Create-react-app & Authentication
 
 # initiate React app
 
@@ -117,4 +117,39 @@ firebase.js
 
 # FE&BE sign-up Page
 
-setting up Auth pages without OAuth
+setting up Auth pages
+
+## 4. Frontend Context API : Auth
+
+/contexts/auth
+AuthContext.js
+AuthReducer.js
+
+- react-firebase-hooks dependency
+
+ <!-- To keep the history clean, you should set replace prop. This will avoid extra redirects after the user click back. -->
+
+    if (user) {
+    	return <Navigate to="/" replace />;
+    }
+
+<!--  -->
+
+## 5. Backend Feedback API
+
+/routes
+feedbackRoutes.js
+/models
+feedbackModel.js
+/controllers
+feedbackController.js
+
+<!-- express-async-handler -->
+
+<!-- get req.body -->
+
+app.use(express.urlencoded({ extended: false }));
+
+<!--  -->
+
+# authMiddleware API

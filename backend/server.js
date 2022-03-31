@@ -8,8 +8,11 @@ connectDB();
 
 const app = express();
 
+// body parser
+app.use(express.urlencoded({ extended: false }));
+
 // Routes
-app.use('/api/', require('./routes/rootRoutes'));
+app.use('/api/feedback', require('./routes/feedbackRoutes'));
 
 // local server
 app.listen(config.PORT, () =>

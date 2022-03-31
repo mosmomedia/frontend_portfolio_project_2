@@ -15,6 +15,9 @@ function OAuth() {
 
 			const { email, uid, displayName } = userCred.user;
 
+			console.log(uid);
+			console.log(userCred.user.accessToken);
+
 			const docRef = firebase.doc(firebase.db, 'users', uid);
 			const docSnap = await firebase.getDoc(docRef);
 

@@ -1,4 +1,5 @@
 const admin = require('firebase-admin');
+const { getFirestore } = require('firebase-admin/firestore');
 
 const config = require('./index');
 
@@ -18,4 +19,4 @@ const firebase = admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount),
 });
 
-module.exports = firebase;
+module.exports = { auth: firebase.auth(), db: getFirestore() };
