@@ -1,13 +1,16 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 
 import firebase from '../config/firebase';
+import { useAuthContext } from '../contexts/auth/AuthContext';
 
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 import { toast } from 'react-toastify';
 
 function SignUp() {
+	const userState = useAuthContext();
+
 	const [showPassword, setShowPassword] = useState(false);
 	const [formData, setFormData] = useState({
 		name: '',
@@ -27,14 +30,14 @@ function SignUp() {
 		e.preventDefault();
 		try {
 			const userCred = await firebase.createUserWithEmailAndPassword(
-				firebase.getAuth(),
+				firebase.auth,
 				email,
 				password
 			);
 
 			const userObjectId = firebase.createMongoObjectId();
 
-			firebase.updateProfile(firebase.getAuth().currentUser, {
+			firebase.updateProfile(firebase.auth.currentUser, {
 				displayName: name,
 			});
 
@@ -48,14 +51,9 @@ function SignUp() {
 			const uid = userCred?.user.uid;
 
 			await firebase.setDoc(
-				firebase.doc(firebase.getFirestore(), 'users', uid),
+				firebase.doc(firebase.db, 'users', uid),
 				userProfile
 			);
-
-			const user = { email, name, uid: userCred.user.uid, userObjectId };
-
-			localStorage.setItem('user', JSON.stringify(user));
-			// todo dispatch [set_login]
 
 			toast(`Welcome, ${name}!`);
 
@@ -65,6 +63,10 @@ function SignUp() {
 			toast.error('Could not authorize');
 		}
 	};
+
+	if (userState) {
+		return <Navigate to="/" replace />;
+	}
 
 	return (
 		<>

@@ -11,38 +11,26 @@ function OAuth() {
 	const onGoogleClick = async () => {
 		try {
 			const provider = new firebase.GoogleAuthProvider();
-			const userCred = await firebase.signInWithPopup(
-				firebase.getAuth(),
-				provider
-			);
+			const userCred = await firebase.signInWithPopup(firebase.auth, provider);
 
 			const { email, uid, displayName } = userCred.user;
 
-			const docRef = firebase.doc(firebase.getFirestore(), 'users', uid);
+			const docRef = firebase.doc(firebase.db, 'users', uid);
 			const docSnap = await firebase.getDoc(docRef);
 
 			let userObjectId;
 
 			if (!docSnap.exists()) {
 				userObjectId = firebase.createMongoObjectId();
-				await firebase.setDoc(
-					firebase.doc(firebase.getFirestore(), 'users', uid),
-					{
-						name: displayName,
-						email,
-						userObjectId,
-						createdAt: firebase.serverTimestamp(),
-					}
-				);
+				await firebase.setDoc(firebase.doc(firebase.db, 'users', uid), {
+					name: displayName,
+					email,
+					userObjectId,
+					createdAt: firebase.serverTimestamp(),
+				});
 			} else {
-				userObjectId = docSnap.data().userObject;
+				userObjectId = docSnap.data().userObjectId;
 			}
-
-			const user = { email, name: displayName, uid, userObjectId };
-
-			localStorage.setItem('user', JSON.stringify(user));
-
-			//todo dispatch
 
 			toast(`Welcome, ${displayName}`);
 

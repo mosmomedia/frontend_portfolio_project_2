@@ -4,6 +4,7 @@ import {
 	doc,
 	setDoc,
 	getDoc,
+	collection,
 	serverTimestamp,
 } from 'firebase/firestore';
 
@@ -41,8 +42,12 @@ const createMongoObjectId = function () {
 // Initialize Firebase
 initializeApp(firebaseConfig);
 
+const auth = getAuth();
+const db = getFirestore();
+
 const firebase = {
-	getAuth,
+	auth,
+	db,
 	onAuthStateChanged,
 	updateProfile,
 	signInWithPopup,
@@ -50,10 +55,10 @@ const firebase = {
 	GoogleAuthProvider,
 	createUserWithEmailAndPassword,
 	createMongoObjectId,
-	getFirestore,
 	doc,
 	setDoc,
 	getDoc,
+	collection,
 	serverTimestamp,
 };
 

@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 import firebase from '../config/firebase';
+
+import { useAuthContext } from '../contexts/auth/AuthContext';
 
 import OAuth from '../components/OAuth';
 
@@ -16,6 +18,7 @@ function SignIn() {
 		password: '',
 	});
 
+	const userState = useAuthContext();
 	const { email, password } = formData;
 
 	const navigate = useNavigate();
@@ -26,34 +29,28 @@ function SignIn() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
 		try {
 			const userCred = await firebase.signInWithEmailAndPassword(
-				firebase.getAuth(),
+				firebase.auth,
 				email,
 				password
 			);
-
 			if (userCred.user) {
-				const { email, displayName, uid } = userCred.user;
-
-				const docRef = firebase.doc(firebase.getFirestore(), 'users', uid);
-
-				const docSnap = await firebase.getDoc(docRef);
-				const { userObjectId } = docSnap.data();
-
-				const user = { email, name: displayName, uid, userObjectId };
-
-				localStorage.setItem('user', JSON.stringify(user));
-
-				// todo dispatch [set_login]
+				const { displayName } = userCred.user;
 				toast(`Welcome, ${displayName}!`);
-
 				navigate('/');
 			}
 		} catch (error) {
 			toast.error('Bad User Credentials');
 		}
 	};
+
+	// To keep the history clean, you should set replace prop. This will avoid extra redirects after the user click back.
+	if (userState) {
+		return <Navigate to="/" replace />;
+	}
+
 	return (
 		<>
 			<div className="">
