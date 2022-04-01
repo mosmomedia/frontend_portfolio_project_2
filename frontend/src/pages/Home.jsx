@@ -1,7 +1,12 @@
 import Feedback from '../pages/Feedback';
+import { FeedbackProvider } from '../contexts/feedback/FeedbackContext';
 
 function Home() {
-	return <Feedback />;
+	return (
+		<FeedbackProvider>
+			<Feedback />
+		</FeedbackProvider>
+	);
 }
 
 export default Home;

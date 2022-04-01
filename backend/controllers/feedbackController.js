@@ -12,13 +12,14 @@ const getAllFeedback = asyncHandler(async (req, res) => {
 // create a feedback
 const createFeedback = asyncHandler(async (req, res) => {
 	const { rating, text } = req.body;
-	const { name, userObjectId } = req.user;
+	const { name, userObjectId, uid } = req.user;
 
 	const feedback = await Feedback.create({
 		rating,
 		text,
 		userName: name,
 		userRef: userObjectId,
+		userFirebase: uid,
 	});
 
 	res.status(200).json(feedback);

@@ -160,3 +160,18 @@ app.use(express.urlencoded({ extended: false }));
     createFeedback,
     updateFeedback,
     deleteFeedback,
+
+## 6. Frontend Feedback Pages & components
+
+# about page
+
+# Feedback Context API
+
+/contexts/feedback
+feedbackContext.js
+feedbackAction.js
+feedbackReducer.js
+
+<!-- server.js -->
+
+app.use(cors());

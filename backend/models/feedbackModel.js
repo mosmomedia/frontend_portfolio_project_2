@@ -6,6 +6,10 @@ const feedbackSchema = new mongoose.Schema(
 			type: mongoose.Schema.Types.ObjectId,
 			required: true,
 		},
+		userFirebase: {
+			type: String,
+			required: true,
+		},
 		rating: {
 			type: Number,
 			required: true,
