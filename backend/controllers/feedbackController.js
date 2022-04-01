@@ -34,12 +34,12 @@ const updateFeedback = asyncHandler(async (req, res) => {
 		throw new Error('ID not found ');
 	}
 
-	const docSnap = await firebaseAdmin.db
+	const user = await firebaseAdmin.db
 		.collection('users')
 		.doc(req.user.uid)
 		.get();
 
-	if (!docSnap.exists) {
+	if (!user.exists) {
 		res.status(401);
 		throw new Error('User not found');
 	}
@@ -72,12 +72,12 @@ const deleteFeedback = asyncHandler(async (req, res) => {
 		throw new Error('ID not found ');
 	}
 
-	const docSnap = await firebaseAdmin.db
+	const user = await firebaseAdmin.db
 		.collection('users')
 		.doc(req.user.uid)
 		.get();
 
-	if (!docSnap.exists) {
+	if (!user.exists) {
 		res.status(401);
 		throw new Error('User not found');
 	}

@@ -12,7 +12,7 @@ function FeedbackItem({ item }) {
 
 	const { rating, text, _id, userFirebase } = item;
 	const handleEdit = () => {
-		// todo EditMode
+		dispatch({ type: 'ON_EDITMODE', payload: item });
 	};
 
 	const handleDelete = async () => {
