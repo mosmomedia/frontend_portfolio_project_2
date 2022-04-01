@@ -11,7 +11,9 @@ function FeedbackItem({ item }) {
 	const { feedbackList, dispatch } = useFeedbackContext();
 
 	const { rating, text, _id, userFirebase } = item;
-	const handleEdit = (params) => {};
+	const handleEdit = () => {
+		// todo EditMode
+	};
 
 	const handleDelete = async () => {
 		const { success } = await deleteFeedback(_id);
