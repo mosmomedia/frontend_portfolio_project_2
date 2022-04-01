@@ -7,6 +7,13 @@ function FeedbackReducer(state, action) {
 				isLoading: false,
 			};
 
+		case 'CREATE_FEEDBACK':
+			return {
+				...state,
+				feedbackList: action.payload,
+				isLoading: false,
+			};
+
 		case 'DELETE_FEEDBACK':
 			return {
 				...state,

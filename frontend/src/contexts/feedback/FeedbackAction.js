@@ -36,6 +36,19 @@ export const getAllFeedback = async () => {
 	}
 };
 
+//  create a feedback
+export const createFeedback = async (formData) => {
+	try {
+		const header = await createPayloadHeader();
+
+		const res = await axios.post(API_URL, formData, header);
+
+		return res.data;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 //  delete a feedback
 export const deleteFeedback = async (id) => {
 	try {

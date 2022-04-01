@@ -2,7 +2,13 @@ import { useState } from 'react';
 import Card from '../../shared/Card';
 import RatingSelect from './RatingSelect';
 
+import { createFeedback } from '../../contexts/feedback/FeedbackAction';
+import { useFeedbackContext } from '../../contexts/feedback/FeedbackContext';
+import { toast } from 'react-toastify';
+
 function FeedbackForm() {
+	const { feedbackList, dispatch } = useFeedbackContext();
+
 	const [text, setText] = useState('');
 	const [rating, setRating] = useState(10);
 	const [isDisabled, setIsDisabled] = useState(true);
@@ -22,9 +28,15 @@ function FeedbackForm() {
 		setText(value);
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log(text, rating);
+		const formData = { rating, text };
+		const newFeedback = await createFeedback(formData);
+		const payload = [newFeedback, ...feedbackList];
+		dispatch({ type: 'CREATE_FEEDBACK', payload });
+		toast.success('New Feedback Added!');
+		setText('');
+		setRating(10);
 	};
 	return (
 		<>
@@ -34,7 +46,7 @@ function FeedbackForm() {
 					<RatingSelect rating={rating} setRating={setRating} />
 					<div className="flex border-solid border-[1px] border-[#ccc] rounded-lg py-2 px-3 ">
 						<input
-							className=" text-lg flex-grow focus:outline-none "
+							className="text-lg flex-grow focus:outline-none "
 							type="text"
 							value={text}
 							onChange={handleChange}
