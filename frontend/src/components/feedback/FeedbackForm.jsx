@@ -1,18 +1,32 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Card from '../../shared/Card';
 import RatingSelect from './RatingSelect';
 
 import { createFeedback } from '../../contexts/feedback/FeedbackAction';
 import { useFeedbackContext } from '../../contexts/feedback/FeedbackContext';
+import { useAuthContext } from '../../contexts/auth/AuthContext';
+
 import { toast } from 'react-toastify';
 
-function FeedbackForm() {
+function FeedbackEditForm() {
 	const { feedbackList, dispatch } = useFeedbackContext();
-
+	const user = useAuthContext();
 	const [text, setText] = useState('');
 	const [rating, setRating] = useState(10);
 	const [isDisabled, setIsDisabled] = useState(true);
 	const [message, setMessage] = useState('');
+
+	const inputRef = useRef();
+
+	const handleFocus = (e) => {
+		if (!user) {
+			setMessage('Please Login First..');
+			inputRef.current.blur();
+			setTimeout(() => {
+				setMessage('');
+			}, 1500);
+		}
+	};
 
 	const handleChange = ({ target: { value } }) => {
 		if (value === '') {
@@ -49,6 +63,8 @@ function FeedbackForm() {
 							className="text-lg flex-grow focus:outline-none "
 							type="text"
 							value={text}
+							onFocus={handleFocus}
+							ref={inputRef}
 							onChange={handleChange}
 							placeholder="Write a review"
 						/>
@@ -73,4 +89,4 @@ function FeedbackForm() {
 	);
 }
 
-export default FeedbackForm;
+export default FeedbackEditForm;

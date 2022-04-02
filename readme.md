@@ -175,3 +175,11 @@ feedbackReducer.js
 <!-- server.js -->
 
 app.use(cors());
+
+# Feedback components
+
+FeedbackEditForm
+FeedbackItem
+FeedbackList
+FeedbackStats
+RatingSelect

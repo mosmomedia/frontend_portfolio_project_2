@@ -94,7 +94,7 @@ function FeedbackEditForm() {
 			contentLabel="Edit Feedback"
 			onRequestClose={closeModal}
 		>
-			<h2 className="text-xl mb-4">Edit Feedback</h2>
+			<h2 className="text-2xl mb-8 ml-2">Edit Feedback</h2>
 			<button className="absolute top-2 right-2 text-xl " onClick={closeModal}>
 				<FaTimes className=" text-pink-400 hover:text-rose-800" />
 			</button>
@@ -124,7 +124,7 @@ function FeedbackEditForm() {
 						</li>
 					))}
 				</ul>
-				<div className="flex border-solid border-[1px] border-[#ccc] rounded-lg py-2 px-3 ">
+				<div className="flex border-solid border-[1px] border-[#ccc] rounded-lg py-2 px-3 mb-1">
 					<input
 						className="text-lg flex-grow focus:outline-none "
 						type="text"
