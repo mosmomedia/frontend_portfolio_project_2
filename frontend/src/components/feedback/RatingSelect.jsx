@@ -1,6 +1,13 @@
-function RatingSelect({ rating, setRating }) {
+function RatingSelect({ rating, setRating, user, setMessage }) {
 	const handleChange = ({ target: { value } }) => {
-		setRating(+value);
+		if (!user) {
+			setMessage('Please Login First..');
+			setTimeout(() => {
+				setMessage('');
+			}, 1500);
+		} else {
+			setRating(+value);
+		}
 	};
 	return (
 		<ul className="rating flex justify-around items-center mt-7 mb-10">

@@ -42,12 +42,9 @@ const createMongoObjectId = function () {
 // Initialize Firebase
 initializeApp(firebaseConfig);
 
-const auth = getAuth();
-const db = getFirestore();
-
 const firebase = {
-	auth,
-	db,
+	auth: getAuth(),
+	db: getFirestore(),
 	onAuthStateChanged,
 	updateProfile,
 	signInWithPopup,

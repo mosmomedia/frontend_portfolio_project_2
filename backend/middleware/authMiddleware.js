@@ -9,7 +9,7 @@ const authmiddleware = asyncHandler(async (req, res, next) => {
 		req.headers.authorization.startsWith('Bearer')
 	) {
 		try {
-			firebaseToken = req.headers.authorization?.split(' ')[1];
+			firebaseToken = req.headers.authorization.split(' ')[1];
 
 			let fireaseUser;
 

@@ -57,7 +57,12 @@ function FeedbackEditForm() {
 			<Card>
 				<form onSubmit={handleSubmit}>
 					<h2 className="text-2xl">How would you rate your service with us?</h2>
-					<RatingSelect rating={rating} setRating={setRating} />
+					<RatingSelect
+						rating={rating}
+						setRating={setRating}
+						user={user}
+						setMessage={setMessage}
+					/>
 					<div className="flex border-solid border-[1px] border-[#ccc] rounded-lg py-2 px-3 ">
 						<input
 							className="text-lg flex-grow focus:outline-none "

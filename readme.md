@@ -123,7 +123,6 @@ setting up Auth pages
 
 /contexts/auth
 AuthContext.js
-AuthReducer.js
 
 - react-firebase-hooks dependency
 
