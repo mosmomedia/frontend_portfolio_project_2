@@ -6,14 +6,14 @@ import FeedbackEditForm from '../components/feedback/FeedbackEditForm';
 import { useFeedbackContext } from '../contexts/feedback/FeedbackContext';
 
 function Feedback() {
-	const { editMode, isLoading } = useFeedbackContext();
+	const { editMode } = useFeedbackContext();
 	return (
 		<>
 			<FeedbackForm />
 			<FeedbackStats />
 			<FeedbackList />
 
-			{editMode && !isLoading && <FeedbackEditForm />}
+			{editMode && <FeedbackEditForm />}
 		</>
 	);
 }

@@ -8,10 +8,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Spinner from '../../shared/Spinner';
 
 function FeedbackList() {
-	const { dispatch, isLoading, feedbackList } = useFeedbackContext();
+	const { dispatch, feedbackList, isLoading } = useFeedbackContext();
 
 	useEffect(() => {
 		const fetchAllFeedback = async () => {
+			dispatch({ type: 'LOADING' });
 			const payload = await getAllFeedback();
 			dispatch({ type: 'GET_ALL_FEEDBACK', payload });
 		};
@@ -19,12 +20,12 @@ function FeedbackList() {
 		fetchAllFeedback();
 	}, [dispatch]);
 
-	if (!isLoading && (!feedbackList || feedbackList.length === 0)) {
-		return <p>No Feedback Yet</p>;
+	if (isLoading) {
+		return <Spinner />;
 	}
 
-	return isLoading ? (
-		<Spinner />
+	return !feedbackList || feedbackList.length === 0 ? (
+		<p>No Feedback Yet</p>
 	) : (
 		<div className="">
 			<AnimatePresence>

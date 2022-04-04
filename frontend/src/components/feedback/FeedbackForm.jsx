@@ -18,7 +18,7 @@ function FeedbackEditForm() {
 
 	const inputRef = useRef();
 
-	const handleFocus = (e) => {
+	const handleFocus = () => {
 		if (!user) {
 			setMessage('Please Login First..');
 			inputRef.current.blur();

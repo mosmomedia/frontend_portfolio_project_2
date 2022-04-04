@@ -8,7 +8,7 @@ function FeedbackProvider({ children }) {
 		feedbackList: [],
 		currentFeedback: null,
 		editMode: false,
-		isLoading: true,
+		isLoading: false,
 	};
 
 	const [state, dispatch] = useReducer(FeedbackReducer, initialState);
