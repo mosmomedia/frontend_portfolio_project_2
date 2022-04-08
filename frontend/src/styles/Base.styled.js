@@ -1,29 +1,27 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+import tw from 'twin.macro';
+import { createGlobalStyle } from 'styled-components';
+
+const StyleBase = createGlobalStyle`
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
+* {
+	${tw`box-border`}
+}
+
 body {
 	font-family: 'Poppins', sans-serif;
-	background-color: #202142;
-	color: #fff;
-	line-height: 1.6;
+	${tw`bg-body text-white text-base`}
 }
 
 a {
-	text-decoration: none;
-	display: block;
-	color: #000000;
+	${tw`block no-underline`}
 }
 
-@layer base {
 	.bred {
 		border: 1px solid rgba(255, 0, 0, 0.4);
 	}
-}
 
-@layer components {
 	.input {
 		box-shadow: rgba(0, 0, 0, 0.11);
 		border: none;
@@ -68,41 +66,7 @@ a {
 			transform: rotate(360deg);
 		}
 	}
-}
 
-/*  {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
+`;
 
-
-ul {
-	list-style: none;
-}
-
-button {
-	outline: none;
-	border: none;
-}
-
-a {
-	text-decoration: none;
-	display: block;
-	color: #000000;
-}
-
-.container {
-	max-width: 768px;
-	margin: auto;
-	padding: 0 20px;
-}
-
-header {
-	height: 70px;
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 30px;
-} */
+export default StyleBase;
