@@ -6,6 +6,14 @@ import { createFeedback } from '../../contexts/feedback/FeedbackAction';
 import { useFeedbackContext } from '../../contexts/feedback/FeedbackContext';
 import { useAuthContext } from '../../contexts/auth/AuthContext';
 
+import {
+	FormStyles,
+	SubmitStyles,
+	InputStyles,
+	ButtonStyles,
+	MessageStyles,
+} from '../../styles/FeedbackStyles';
+
 import { toast } from 'react-toastify';
 
 function FeedbackEditForm() {
@@ -55,17 +63,16 @@ function FeedbackEditForm() {
 	return (
 		<>
 			<Card>
-				<form onSubmit={handleSubmit}>
-					<h2 className="text-2xl">How would you rate your service with us?</h2>
+				<FormStyles onSubmit={handleSubmit}>
+					<h2>How would you rate your service with us?</h2>
 					<RatingSelect
 						rating={rating}
 						setRating={setRating}
 						user={user}
 						setMessage={setMessage}
 					/>
-					<div className="flex border-solid border-[1px] border-[#ccc] rounded-lg py-2 px-3 ">
-						<input
-							className="text-lg flex-grow focus:outline-none "
+					<SubmitStyles>
+						<InputStyles
 							type="text"
 							value={text}
 							onFocus={handleFocus}
@@ -73,22 +80,16 @@ function FeedbackEditForm() {
 							onChange={handleChange}
 							placeholder="Write a review"
 						/>
-						<button
-							className={`w-24 h-10 cursor-pointer rounded-lg ${
-								isDisabled
-									? ' bg-gray-300 text-gray-400'
-									: ' bg-slate-900 text-white'
-							}`}
+						<ButtonStyles
+							is_disabled={isDisabled}
 							type="submit"
 							disabled={isDisabled}
 						>
 							Send
-						</button>
-					</div>
-					{message && (
-						<p className=" pt-2 text-center text-violet-800">{message}</p>
-					)}
-				</form>
+						</ButtonStyles>
+					</SubmitStyles>
+					{message && <MessageStyles>{message}</MessageStyles>}
+				</FormStyles>
 			</Card>
 		</>
 	);

@@ -1,4 +1,6 @@
 import { useFeedbackContext } from '../../contexts/feedback/FeedbackContext';
+import 'twin.macro';
+import 'styled-components/macro';
 
 function FeedbackStats() {
 	const { feedbackList } = useFeedbackContext();
@@ -7,7 +9,7 @@ function FeedbackStats() {
 			feedbackList.length
 	);
 	return (
-		<div className=" text-white flex justify-between items-center mt-12 mb-6 text-lg px-1">
+		<div tw="mx-auto w-[95%] max-w-3xl text-white flex justify-between items-center mt-12 mb-6 text-lg px-1">
 			{feedbackList.length > 0 && (
 				<h4>
 					{feedbackList.length} {feedbackList.length > 1 ? 'Reviews' : 'Review'}

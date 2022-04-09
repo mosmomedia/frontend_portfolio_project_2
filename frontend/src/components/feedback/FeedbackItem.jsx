@@ -4,6 +4,13 @@ import { FaEdit, FaTimes } from 'react-icons/fa';
 import { useAuthContext } from '../../contexts/auth/AuthContext';
 import { useFeedbackContext } from '../../contexts/feedback/FeedbackContext';
 import { deleteFeedback } from '../../contexts/feedback/FeedbackAction';
+
+import {
+	ItemRatingStyles,
+	ItemTextStyles,
+	ItemButtonStyles,
+} from '../../styles/FeedbackStyles';
+
 import { toast } from 'react-toastify';
 
 function FeedbackItem({ item }) {
@@ -26,27 +33,19 @@ function FeedbackItem({ item }) {
 
 	return (
 		<Card>
-			<div className="absolute  -top-2 -left-2 bg-[#ff6a95] text-white w-14 h-14 p-2 text-center rounded-full text-[1.5rem] border-solid border-[1px]  border-[#eee] delay-300">
-				{rating}
-			</div>
+			<ItemRatingStyles className="">{rating}</ItemRatingStyles>
 			{curruntUser && curruntUser.uid === userFirebase && (
 				<>
-					<button
-						className="absolute top-2 right-2 cursor-pointer bg-none border-none "
-						onClick={handleDelete}
-					>
+					<ItemButtonStyles is_del_btn="is_del_btn" onClick={handleDelete}>
 						<FaTimes color="#ec4899" />
-					</button>
-					<button
-						className="absolute top-2 right-8 cursor-pointer bg-none border-none"
-						onClick={handleEdit}
-					>
+					</ItemButtonStyles>
+					<ItemButtonStyles is_edit_btn="is_edit_btn" onClick={handleEdit}>
 						<FaEdit />
-					</button>
+					</ItemButtonStyles>
 				</>
 			)}
 
-			<div className=" text-xl text-slate-900">{text}</div>
+			<ItemTextStyles>{text}</ItemTextStyles>
 		</Card>
 	);
 }
