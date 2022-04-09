@@ -1,7 +1,7 @@
 import tw from 'twin.macro';
 import { createGlobalStyle } from 'styled-components';
 
-const StyleBase = createGlobalStyle`
+const BaseStyles = createGlobalStyle`
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
@@ -14,15 +14,27 @@ body {
 	${tw`bg-body text-white text-base`}
 }
 
+h1{
+	${tw`text-2xl`}
+}
+
+h2{
+	${tw`text-xl`}
+}
+
+p{
+	${tw`text-base`}
+}
+
 a {
-	${tw`block no-underline`}
+	${tw` no-underline`}
 }
 
 	.bred {
 		border: 1px solid rgba(255, 0, 0, 0.4);
 	}
 
-	.input {
+	/* .input {
 		box-shadow: rgba(0, 0, 0, 0.11);
 		border: none;
 		background: #fff;
@@ -34,7 +46,7 @@ a {
 		padding: 0 3rem;
 		font-size: 1rem;
 		margin: 1rem 0;
-	}
+	} */
 
 	.loadingSpinnerContainer {
 		position: fixed;
@@ -69,4 +81,4 @@ a {
 
 `;
 
-export default StyleBase;
+export default BaseStyles;

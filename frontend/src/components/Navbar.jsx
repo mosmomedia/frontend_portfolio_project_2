@@ -3,18 +3,13 @@ import { useAuthContext } from '../contexts/auth/AuthContext';
 import firebase from '../config/firebase';
 
 import { toast } from 'react-toastify';
+import { NavbarStyles, NavItemStyles } from '../styles/NavbarStyles';
 
 function Navbar() {
 	const userState = useAuthContext();
 
 	const location = useLocation();
 	const navigate = useNavigate();
-
-	const pathMatchRoute = (route) => {
-		if (route === location.pathname) {
-			return true;
-		}
-	};
 
 	const handleLogout = () => {
 		firebase.auth.signOut();
@@ -23,49 +18,35 @@ function Navbar() {
 	};
 
 	return (
-		<footer className="fixed left-0 bottom-0 right-0 h-20 bg-white text-[#8f8f8f] z-50 flex justify-center items-center">
+		<NavbarStyles>
 			<nav className="w-full overflow-y-hidden">
-				<ul className="m-0 p-0 flex justify-evenly items-center font-semibold">
-					<li className="cursor-pointer" onClick={() => navigate('/about')}>
-						<p
-							className={
-								pathMatchRoute('/about') ? 'text-[#2c2c2c] ' : 'text-[#8f8f8f]'
-							}
-						>
+				<ul>
+					<li onClick={() => navigate('/about')}>
+						<NavItemStyles path_name={location.pathname === '/about'}>
 							About
-						</p>
+						</NavItemStyles>
 					</li>
 
-					<li className="cursor-pointer" onClick={() => navigate('/')}>
-						<p
-							className={
-								pathMatchRoute('/') ? 'text-[#2c2c2c] ' : 'text-[#8f8f8f]'
-							}
-						>
+					<li onClick={() => navigate('/')}>
+						<NavItemStyles path_name={location.pathname === '/'}>
 							Feedback
-						</p>
+						</NavItemStyles>
 					</li>
 
 					{!userState ? (
-						<li className="cursor-pointer" onClick={() => navigate('/sign-in')}>
-							<p
-								className={
-									pathMatchRoute('/sign-in')
-										? 'text-[#2c2c2c] '
-										: 'text-[#8f8f8f]'
-								}
-							>
+						<li onClick={() => navigate('/sign-in')}>
+							<NavItemStyles path_name={location.pathname === '/sign-in'}>
 								Login
-							</p>
+							</NavItemStyles>
 						</li>
 					) : (
-						<li className="cursor-pointer" onClick={handleLogout}>
-							<p className=" text-rose-400">Logout</p>
+						<li onClick={handleLogout}>
+							<p className="logout">Logout</p>
 						</li>
 					)}
 				</ul>
 			</nav>
-		</footer>
+		</NavbarStyles>
 	);
 }
 

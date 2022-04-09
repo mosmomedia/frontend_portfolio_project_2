@@ -3,10 +3,19 @@ import { Link, useNavigate, Navigate } from 'react-router-dom';
 
 import firebase from '../config/firebase';
 import { useAuthContext } from '../contexts/auth/AuthContext';
+import OAuth from '../components/OAuth';
 
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 import { toast } from 'react-toastify';
+
+import {
+	Wrapper,
+	FormStyles,
+	InputStyles,
+	ButtonStyles,
+	LinkStyles,
+} from '../styles/SignFormStyles';
 
 function SignUp() {
 	const userState = useAuthContext();
@@ -70,13 +79,13 @@ function SignUp() {
 
 	return (
 		<>
-			<div className="">
+			<Wrapper>
 				<header>
-					<p className="text-2xl">Welcome Back!</p>
+					<h2>Welcome!</h2>
 				</header>
 
-				<form onSubmit={handleSubmit}>
-					<input
+				<FormStyles onSubmit={handleSubmit}>
+					<InputStyles
 						type="text"
 						className="input"
 						placeholder="Name"
@@ -85,7 +94,7 @@ function SignUp() {
 						value={name}
 					/>
 
-					<input
+					<InputStyles
 						type="email"
 						name="email"
 						className="input"
@@ -94,8 +103,8 @@ function SignUp() {
 						value={email}
 					/>
 
-					<div className="relative">
-						<input
+					<div className="password">
+						<InputStyles
 							type={showPassword ? 'text' : 'password'}
 							className="input"
 							placeholder="Password"
@@ -112,23 +121,25 @@ function SignUp() {
 						/>
 					</div>
 
-					<div className="mt-12 flex items-center">
-						<p className="text-2xl ">Sign Up</p>
-						<button className="signUpButton">
+					<ButtonStyles>
+						<p>Sign Up</p>
+						<button>
 							<ArrowRightIcon fill="#ffffff" width="34px" height="34px" />
 						</button>
-					</div>
-				</form>
+					</ButtonStyles>
+				</FormStyles>
 
-				{/* <OAuth /> */}
+				<OAuth />
 
-				<Link
-					to="/sign-in"
-					className="mt-16 text-lg text-[#00cc66] text-center font-semibold"
-				>
-					Sign In Instead
-				</Link>
-			</div>
+				<LinkStyles>
+					<Link
+						to="/sign-in"
+						className="mt-16 text-lg text-[#00cc66] text-center font-semibold"
+					>
+						Sign In Instead
+					</Link>
+				</LinkStyles>
+			</Wrapper>
 		</>
 	);
 }

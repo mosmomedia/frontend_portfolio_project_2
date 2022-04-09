@@ -3,6 +3,8 @@ import firebase from '../config/firebase';
 
 import googleIcon from '../assets/svg/googleIcon.svg';
 import { toast } from 'react-toastify';
+import 'twin.macro';
+import 'styled-components/macro';
 
 function OAuth() {
 	const location = useLocation();
@@ -41,13 +43,13 @@ function OAuth() {
 	};
 
 	return (
-		<div className="flex flex-col items-center mt-16">
+		<div tw="flex flex-col items-center mt-16">
 			<p>Sign {location.pathname === '/sign-up' ? 'up' : 'in'} with </p>
 			<button
-				className=" cursor-pointer flex justify-center items-center p-3 m-6 w-12 h-12 bg-white bor rounded-full  shadow-md"
+				tw="cursor-pointer flex justify-center items-center p-3 m-6 w-12 h-12 bg-white  rounded-full  shadow-md"
 				onClick={onGoogleClick}
 			>
-				<img className="w-full" src={googleIcon} alt="google" />
+				<img tw="w-full" src={googleIcon} alt="google" />
 			</button>
 		</div>
 	);

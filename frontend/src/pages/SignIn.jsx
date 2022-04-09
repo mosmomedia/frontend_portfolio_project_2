@@ -6,6 +6,14 @@ import { useAuthContext } from '../contexts/auth/AuthContext';
 
 import OAuth from '../components/OAuth';
 
+import {
+	Wrapper,
+	FormStyles,
+	InputStyles,
+	ButtonStyles,
+	LinkStyles,
+} from '../styles/SignFormStyles';
+
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 import { toast } from 'react-toastify';
@@ -29,7 +37,6 @@ function SignIn() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
 		try {
 			const userCred = await firebase.signInWithEmailAndPassword(
 				firebase.auth,
@@ -53,25 +60,23 @@ function SignIn() {
 
 	return (
 		<>
-			<div className="">
+			<Wrapper>
 				<header>
-					<p className="text-2xl">Welcome Back!</p>
+					<h2>Welcome Back!</h2>
 				</header>
 
-				<form onSubmit={handleSubmit}>
-					<input
+				<FormStyles onSubmit={handleSubmit}>
+					<InputStyles
 						type="email"
 						name="email"
-						className="input"
 						placeholder="Email"
 						onChange={handleChange}
 						value={email}
 					/>
 
-					<div className="relative">
-						<input
+					<div className="password">
+						<InputStyles
 							type={showPassword ? 'text' : 'password'}
-							className="input"
 							placeholder="Password"
 							name="password"
 							value={password}
@@ -81,28 +86,24 @@ function SignIn() {
 						<img
 							src={visibilityIcon}
 							alt="show password"
-							className="cursor-pointer absolute top-7 right-2"
 							onClick={() => setShowPassword(!showPassword)}
 						/>
 					</div>
 
-					<div className="mt-12 flex items-center">
-						<p className="text-2xl ">Sign In</p>
-						<button className="signUpButton">
-							<ArrowRightIcon fill="#ffffff" width="34px" height="34px" />
+					<ButtonStyles>
+						<p>Sign In</p>
+						<button>
+							<ArrowRightIcon fill="#00cc66" width="34px" height="34px" />
 						</button>
-					</div>
-				</form>
+					</ButtonStyles>
+				</FormStyles>
 
 				<OAuth />
 
-				<Link
-					to="/sign-up"
-					className="mt-16 text-lg text-[#00cc66] text-center font-semibold"
-				>
-					Sign Up Instead
-				</Link>
-			</div>
+				<LinkStyles>
+					<Link to="/sign-up">Sign Up Instead</Link>
+				</LinkStyles>
+			</Wrapper>
 		</>
 	);
 }
