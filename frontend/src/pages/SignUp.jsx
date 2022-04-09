@@ -25,9 +25,10 @@ function SignUp() {
 		name: '',
 		email: '',
 		password: '',
+		password2: '',
 	});
 
-	const { name, email, password } = formData;
+	const { name, email, password, password2 } = formData;
 
 	const navigate = useNavigate();
 
@@ -37,39 +38,44 @@ function SignUp() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		try {
-			const userCred = await firebase.createUserWithEmailAndPassword(
-				firebase.auth,
-				email,
-				password
-			);
 
-			const userObjectId = firebase.createMongoObjectId();
+		if (password === password2) {
+			try {
+				const userCred = await firebase.createUserWithEmailAndPassword(
+					firebase.auth,
+					email,
+					password
+				);
 
-			firebase.updateProfile(firebase.auth.currentUser, {
-				displayName: name,
-			});
+				const userObjectId = firebase.createMongoObjectId();
 
-			const userProfile = {
-				userObjectId,
-				name,
-				email,
-				createdAt: firebase.serverTimestamp(),
-			};
+				firebase.updateProfile(firebase.auth.currentUser, {
+					displayName: name,
+				});
 
-			const uid = userCred?.user.uid;
+				const userProfile = {
+					userObjectId,
+					name,
+					email,
+					createdAt: firebase.serverTimestamp(),
+				};
 
-			await firebase.setDoc(
-				firebase.doc(firebase.db, 'users', uid),
-				userProfile
-			);
+				const uid = userCred?.user.uid;
 
-			toast(`Welcome, ${name}!`);
+				await firebase.setDoc(
+					firebase.doc(firebase.db, 'users', uid),
+					userProfile
+				);
 
-			navigate('/');
-		} catch (error) {
-			console.log(error);
-			toast.error('Could not authorize');
+				toast(`Welcome, ${name}!`);
+
+				navigate('/');
+			} catch (error) {
+				console.log(error);
+				toast.error('Could not authorize');
+			}
+		} else {
+			toast.error('Please Confirm Password');
 		}
 	};
 
@@ -118,6 +124,17 @@ function SignUp() {
 							alt="show password"
 							className="cursor-pointer absolute top-7 right-2"
 							onClick={() => setShowPassword(!showPassword)}
+						/>
+					</div>
+
+					<div className="password">
+						<InputStyles
+							type="password"
+							className="input"
+							placeholder="Confirm Password"
+							name="password2"
+							value={password2}
+							onChange={handleChange}
 						/>
 					</div>
 

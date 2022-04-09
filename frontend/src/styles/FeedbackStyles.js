@@ -2,7 +2,7 @@ import tw, { styled } from 'twin.macro';
 
 export const FormStyles = styled.form`
 	h2 {
-		${tw`text-2xl`}
+		${tw`text-2xl font-semibold opacity-95 text-center mt-4`}
 	}
 `;
 export const SubmitStyles = styled.div`

@@ -1,7 +1,7 @@
 import tw, { styled } from 'twin.macro';
 
 export const RatingWrapper = styled.ul`
-	${tw`flex justify-around items-center mt-7 mb-10`}
+	${tw`flex justify-around items-center mt-10 mb-10`}
 `;
 
 export const RatingNumStyles = styled.li`
