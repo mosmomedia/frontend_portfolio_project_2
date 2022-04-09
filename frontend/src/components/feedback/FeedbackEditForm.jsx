@@ -8,6 +8,22 @@ import { FaTimes } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import Spinner from '../../shared/Spinner';
 
+import {
+	ButtonStyles,
+	InputStyles,
+	SubmitStyles,
+	FormStyles,
+	MessageStyles,
+} from '../../styles/FeedbackStyles';
+
+import {
+	RatingWrapper,
+	RatingNumStyles,
+	RatingInputStyles,
+	RatingLabelStyles,
+	RatingBtnStyles,
+} from '../../styles/RatingSelectStyles';
+
 const customStyles = {
 	overlay: {
 		position: 'fixed',
@@ -95,19 +111,16 @@ function FeedbackEditForm() {
 			onRequestClose={closeModal}
 		>
 			<h2 className="text-2xl mb-8 ml-2">Edit Feedback</h2>
-			<button className="absolute top-2 right-2 text-xl " onClick={closeModal}>
+			<RatingBtnStyles is_close_btn="is_close_btn" onClick={closeModal}>
 				<FaTimes className=" text-pink-400 hover:text-rose-800" />
-			</button>
+			</RatingBtnStyles>
 
-			<form onSubmit={handleSubmit}>
-				<ul className="rating flex justify-around items-center mt-7 mb-10">
+			<FormStyles onSubmit={handleSubmit}>
+				<RatingWrapper className="rating flex justify-around items-center mt-7 mb-10">
 					{Array.from({ length: 10 }, (_, idx) => (
-						<li
-							className=" relative bg-[#f4f4f4] w-14 h-14 text-center p-2 rounded-full text-[1.1875rem] delay-100 hover:bg-[#ff6a95] hover:text-white"
-							key={idx + 1}
-						>
-							<input
-								className=" opacity-0 peer"
+						<RatingNumStyles key={idx + 1}>
+							<RatingInputStyles
+								className="peer"
 								type="radio"
 								id={`edit-num${idx + 1}`}
 								name="rating"
@@ -115,39 +128,30 @@ function FeedbackEditForm() {
 								checked={rating === idx + 1}
 								onChange={handleRatingChange}
 							/>
-							<label
-								htmlFor={`edit-num${idx + 1}`}
-								className="absolute top-1/2 left-1/2 w-14 h-14 cursor-pointer -translate-x-1/2 -translate-y-1/2 p-3 rounded-full text-[1.3rem] peer-checked:bg-[#ff6a95] peer-checked:text-white"
-							>
+							<RatingLabelStyles htmlFor={`edit-num${idx + 1}`}>
 								{idx + 1}
-							</label>
-						</li>
+							</RatingLabelStyles>
+						</RatingNumStyles>
 					))}
-				</ul>
-				<div className="flex border-solid border-[1px] border-[#ccc] rounded-lg py-2 px-3 mb-1">
-					<input
+				</RatingWrapper>
+				<SubmitStyles>
+					<InputStyles
 						className="text-lg flex-grow focus:outline-none "
 						type="text"
 						value={text}
 						onChange={handleTextChange}
 						placeholder="Write a review"
 					/>
-					<button
-						className={`w-24 h-10 cursor-pointer rounded-lg ${
-							isDisabled
-								? ' bg-gray-300 text-gray-400'
-								: ' bg-slate-900 text-white'
-						}`}
+					<ButtonStyles
+						is_disabled={isDisabled}
 						type="submit"
 						disabled={isDisabled}
 					>
 						Change
-					</button>
-				</div>
-				{message && (
-					<p className=" pt-2 text-center text-violet-800">{message}</p>
-				)}
-			</form>
+					</ButtonStyles>
+				</SubmitStyles>
+				{message && <MessageStyles>{message}</MessageStyles>}
+			</FormStyles>
 		</Modal>
 	);
 }
