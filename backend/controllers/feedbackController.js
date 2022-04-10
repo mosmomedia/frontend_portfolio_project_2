@@ -5,8 +5,12 @@ const asyncHandler = require('express-async-handler');
 
 // get all feedback
 const getAllFeedback = asyncHandler(async (req, res) => {
-	const allFeedback = await Feedback.find({}).sort({ updatedAt: -1 });
-	res.status(200).json(allFeedback);
+	try {
+		const allFeedback = await Feedback.find().sort({ updatedAt: -1 });
+		res.status(200).json(allFeedback);
+	} catch (error) {
+		res.status(404).json({ message: error.message });
+	}
 });
 
 // create a feedback
