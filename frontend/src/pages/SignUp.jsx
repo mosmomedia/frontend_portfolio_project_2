@@ -49,7 +49,7 @@ function SignUp() {
 
 				const userObjectId = firebase.createMongoObjectId();
 
-				firebase.updateProfile(firebase.auth.currentUser, {
+				firebase.updateProfile(userCred.user, {
 					displayName: name,
 				});
 
