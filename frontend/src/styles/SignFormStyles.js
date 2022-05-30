@@ -17,10 +17,10 @@ export const FormStyles = styled.form`
 `;
 
 export const InputStyles = styled.input`
-	${tw`shadow border-0 rounded-md outline-none px-12 text-base bg-white text-black h-12 w-full `}/*  */
+	${tw`shadow border-0 rounded-md outline-none px-5 text-base bg-white text-black h-12 w-full `}/*  */
 `;
 
-export const ButtonStyles = styled.div`
+export const ButtonStyles = styled.button`
 	${tw`flex items-center`}
 
 	p {

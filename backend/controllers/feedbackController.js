@@ -3,7 +3,10 @@ const firebaseAdmin = require('../config/firebase');
 
 const asyncHandler = require('express-async-handler');
 
-// get all feedback
+//@ get all feedback
+//@ GET /api/feedback
+//@ Public
+
 const getAllFeedback = asyncHandler(async (req, res) => {
 	try {
 		const allFeedback = await Feedback.find().sort({ updatedAt: -1 });
@@ -13,7 +16,10 @@ const getAllFeedback = asyncHandler(async (req, res) => {
 	}
 });
 
-// create a feedback
+//@ create a feedback
+//@ POST /api/feedback
+//@ Private
+
 const createFeedback = asyncHandler(async (req, res) => {
 	const { rating, text } = req.body;
 	const { name, userObjectId, uid } = req.user;
@@ -29,7 +35,10 @@ const createFeedback = asyncHandler(async (req, res) => {
 	res.status(200).json(feedback);
 });
 
-// update a feedback
+//@ update a feedback
+//@ PUT /api/feedback
+//@ Private
+
 const updateFeedback = asyncHandler(async (req, res) => {
 	const { id } = req.params;
 
@@ -67,7 +76,10 @@ const updateFeedback = asyncHandler(async (req, res) => {
 	res.status(200).json(updatedFeedback);
 });
 
-// delete a feedback
+//@ delete a feedback
+//@ DELETE /api/feedback
+//@ Private
+
 const deleteFeedback = asyncHandler(async (req, res) => {
 	const { id } = req.params;
 

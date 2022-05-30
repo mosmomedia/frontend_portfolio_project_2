@@ -25,6 +25,10 @@ export const ItemRatingStyles = styled.div`
 	${tw`absolute  -top-3 -left-5 bg-keyColor text-white w-14 h-14 p-3 text-center rounded-full text-xl border-solid border-[1px]  border-[#eee] delay-300`}
 `;
 
+export const ItemsStyles = styled.div`
+	${tw`pl-4 `}
+`;
+
 export const ItemTextStyles = styled.div`
 	${tw`text-xl text-gray-900 ml-2`}
 `;

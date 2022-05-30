@@ -4,6 +4,9 @@ import { useFeedbackContext } from '../../contexts/feedback/FeedbackContext';
 import { getAllFeedback } from '../../contexts/feedback/FeedbackAction';
 
 import FeedbackItem from './FeedbackItem';
+
+import { ItemsStyles } from '../../styles/FeedbackStyles';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import Spinner from '../../shared/Spinner';
 
@@ -25,9 +28,9 @@ function FeedbackList() {
 	}
 
 	return !feedbackList || feedbackList.length === 0 ? (
-		<p>No Feedback Yet</p>
+		<ItemsStyles>No Feedback Yet</ItemsStyles>
 	) : (
-		<div className="">
+		<ItemsStyles>
 			<AnimatePresence>
 				{feedbackList.map((item) => (
 					<motion.div
@@ -40,7 +43,7 @@ function FeedbackList() {
 					</motion.div>
 				))}
 			</AnimatePresence>
-		</div>
+		</ItemsStyles>
 	);
 }
 

@@ -140,9 +140,7 @@ function SignUp() {
 
 					<ButtonStyles>
 						<p>Sign Up</p>
-						<button>
-							<ArrowRightIcon fill="#ffffff" width="34px" height="34px" />
-						</button>
+						<ArrowRightIcon fill="#00cc66" width="34px" height="34px" />
 					</ButtonStyles>
 				</FormStyles>
 

@@ -42,8 +42,3 @@ const authmiddleware = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = authmiddleware;
-
-// const user = await firebaseAdmin
-// 	.auth()
-// 	.getUser('JeXoc9qOT0Vpq5Sf3jVoFCIFuAo2');
-// console.log(user);

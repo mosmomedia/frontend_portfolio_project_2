@@ -20,11 +20,8 @@ import { toast } from 'react-toastify';
 
 function SignIn() {
 	const [showPassword, setShowPassword] = useState(false);
-	const [formData, setFormData] = useState({
-		name: '',
-		email: '',
-		password: '',
-	});
+	const initialState = { email: 'test@test.com', password: 'test1234' };
+	const [formData, setFormData] = useState(initialState);
 
 	const userState = useAuthContext();
 	const { email, password } = formData;
@@ -43,6 +40,7 @@ function SignIn() {
 				email,
 				password
 			);
+
 			if (userCred.user) {
 				const { displayName } = userCred.user;
 				toast(`Welcome, ${displayName}!`);
@@ -92,9 +90,7 @@ function SignIn() {
 
 					<ButtonStyles>
 						<p>Sign In</p>
-						<button>
-							<ArrowRightIcon fill="#00cc66" width="34px" height="34px" />
-						</button>
+						<ArrowRightIcon fill="#00cc66" width="34px" height="34px" />
 					</ButtonStyles>
 				</FormStyles>
 
